@@ -1,31 +1,84 @@
+import random
+
 
 def jogar():
 
+    imprime_mensagem_abertura()
+    palavra_secreta = carrega_palavra_secreta()
+
+    letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
+    print(letras_acertadas)
+
+    enforcou = False
+    acertou = False
+    erros = 0
+
+    # enquanto True
+    while not enforcou and not acertou:
+        chute = pede_chute()
+
+        if chute in palavra_secreta:
+            marca_chute_correto(chute, letras_acertadas, palavra_secreta)
+        else:
+            erros = erros + 1
+
+        enforcou = erros == 6
+        acertou = "_" not in letras_acertadas
+        print(letras_acertadas)
+
+    if acertou:
+        imprime_mensagem_de_vencedor()
+    else:
+        imprime_mensagem_de_perdedor()
+
+
+def imprime_mensagem_de_vencedor():
+    print("Você ganhou")
+    print("Fim do jogo")
+
+
+def imprime_mensagem_de_perdedor():
+    print("Você perdeu")
+    print("Fim do jogo")
+
+
+def marca_chute_correto(chute, letras_acertadas, palavra_secreta):
+    index = 0
+    for letra in palavra_secreta:
+        if chute.upper() == letra.upper():
+            letras_acertadas[index] = letra
+        index = index + 1
+
+
+def pede_chute():
+    chute = input("Qual letra ")
+    chute = chute.strip().upper()
+    return chute
+
+
+def inicializa_letras_acertadas(palavra):
+    return ["_" for _ in palavra]
+
+
+def imprime_mensagem_abertura():
     print("*********************************")
     print("***Bem vindo no jogo de forca!***")
     print("*********************************")
 
-    palavra_secreta = "banana"
-    letras_acertadas = ["_", "_", "_", "_", "_", "_"]
 
-    enforcou = False
-    acertou = False
+def carrega_palavra_secreta():
+    arquivo = open("palavras.txt", "r")
+    palavras = []
 
-    # enquanto True
-    while not enforcou and not acertou:
-        chute = input("Qual letra ")
-        chute = chute.strip()
+    for linha in arquivo:
+        linha = linha.strip()
+        palavras.append(linha)
 
-        index = 0
+    arquivo.close()
 
-        for letra in palavra_secreta:
-            if chute.upper() == letra.upper():
-                
-            index = index + 1
-
-        print("Jogando...")
-
-    print("Fim do jogo")
+    numero = random.randrange(0, len(palavras))
+    palavra_secreta = palavras[numero].upper()
+    return palavra_secreta
 
 
 if __name__ == "__main__":
