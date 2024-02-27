@@ -2,7 +2,6 @@ import random
 
 
 def jogar():
-
     imprime_mensagem_abertura()
     palavra_secreta = carrega_palavra_secreta()
 
@@ -29,16 +28,47 @@ def jogar():
     if acertou:
         imprime_mensagem_de_vencedor()
     else:
-        imprime_mensagem_de_perdedor()
+        imprime_mensagem_de_perdedor(palavra_secreta)
 
 
 def imprime_mensagem_de_vencedor():
-    print("Você ganhou")
+    print("Parabens, Você ganhou!")
+
+
+    print("       ___________      ")
+    print("      '._==_==_=_.'     ")
+    print("      .-\\:      /-.    ")
+    print("     | (|:.     |) |    ")
+    print("      '-|:.     |-'     ")
+    print("        \\::.    /      ")
+    print("         '::. .'        ")
+    print("           ) (          ")
+    print("         _.' '._        ")
+    print("        '-------'       ")
     print("Fim do jogo")
 
 
-def imprime_mensagem_de_perdedor():
-    print("Você perdeu")
+def imprime_mensagem_de_perdedor(palavra_secreta):
+    print("Puxa, Você foi enforcado!")
+    print(f"A palavra era {palavra_secreta}!")
+
+    print("    _______________         ")
+    print("   /               \       ")
+    print("  /                 \      ")
+    print("//                   \/\  ")
+    print("\|   XXXX     XXXX   | /   ")
+    print(" |   XXXX     XXXX   |/     ")
+    print(" |   XXX       XXX   |      ")
+    print(" |                   |      ")
+    print(" \__      XXX      __/     ")
+    print("   |\     XXX     /|       ")
+    print("   | |           | |        ")
+    print("   | I I I I I I I |        ")
+    print("   |  I I I I I I  |        ")
+    print("   \_             _/       ")
+    print("     \_         _/         ")
+    print("       \_______/           ")
+
     print("Fim do jogo")
 
 
